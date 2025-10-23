@@ -341,7 +341,11 @@ class ManageCommandTest extends AbstractTestCase
         $supervisor = new Supervisor($supervisorApi, $transports);
         $command = new ManageCommand($supervisor);
 
-        $application->add($command);
+        if (method_exists($application, 'addCommand')) {
+            $application->addCommand($command);
+        } else { // @legacy SF <= 7.4
+            $application->add($command);
+        }
 
         return new CommandTester($application->find('ecommit:supervisor'));
     }
