@@ -207,7 +207,11 @@ class WorkflowTest extends KernelTestCase
     protected function getCommandTester(): CommandTester
     {
         $application = new Application();
-        $application->add(self::getContainer()->get(ManageCommand::class));
+        if (method_exists($application, 'addCommand')) {
+            $application->addCommand(self::getContainer()->get(ManageCommand::class));
+        } else { // @legacy SF <= 7.4
+            $application->add(self::getContainer()->get(ManageCommand::class));
+        }
 
         return new CommandTester($application->find('ecommit:supervisor'));
     }
