@@ -37,7 +37,7 @@ class Configuration implements ConfigurationInterface
                     ->arrayPrototype()
                         ->beforeNormalization()
                             ->ifString()
-                            ->then(fn (string $v) => ['program' => $v])
+                            ->then(static fn (string $v) => ['program' => $v])
                         ->end()
                         ->children()
                             ->scalarNode('program')->isRequired()->end()
@@ -92,7 +92,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                             ->beforeNormalization()
                                 ->ifString()
-                                ->then(fn (string $v) => [$v])
+                                ->then(static fn (string $v) => [$v])
                             ->end()
                         ->end()
                         ->scalarNode('subject')->defaultValue('[Supervisor][<server>][<program>] Error')->end()
@@ -101,7 +101,7 @@ class Configuration implements ConfigurationInterface
                 ->integerNode('failure_event_priority')->defaultValue(10)->end()
             ->end()
             ->validate()
-                ->ifTrue(function (mixed $v) {
+                ->ifTrue(static function (mixed $v) {
                     if (0 === \count($v['transports']) || (!empty($v['mailer']['from']) && !empty($v['mailer']['to']))) {
                         return false;
                     }
