@@ -51,7 +51,6 @@ jobs:
                         description: 'with SF 8.1.* dev'
 
                     #PHP versions
-                    -   php-version: '8.1'
                     -   php-version: '8.2'
                     -   php-version: '8.3'
                     -   php-version: '8.4'
@@ -67,7 +66,7 @@ jobs:
                         analyze-dependencies: true
 
                     #Static Analysis (min PHP version)
-                    -   php-version: '8.1'
+                    -   php-version: '8.2'
                         description: 'with Static Analysis'
                         static-analysis: true
 

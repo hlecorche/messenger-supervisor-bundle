@@ -22,7 +22,7 @@
         }
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "egulias/email-validator": "^3.0|^4.0",
         "lstrojny/fxmlrpc": "^0.22",
         "nyholm/psr7": "^1.0",
