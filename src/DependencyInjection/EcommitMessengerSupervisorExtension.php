@@ -16,7 +16,7 @@ namespace Ecommit\MessengerSupervisorBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class EcommitMessengerSupervisorExtension extends Extension
 {
@@ -25,8 +25,8 @@ class EcommitMessengerSupervisorExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
-        $loader->load('services.xml');
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('messenger_supervisor.php');
 
         $container->setParameter('ecommit_messenger_supervisor.transports', $config['transports']);
         $container->setParameter('ecommit_messenger_supervisor.supervisor', $config['supervisor']);
